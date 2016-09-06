@@ -7,16 +7,19 @@ cmake_minimum_required(VERSION 2.8.4)
 
 PROJECT(transito-cv)
 
-include(dlib/cmake)
+include(dlib/dlib/cmake)
 
 set(CMAKE_BUILD_TYPE Release)
 
-option(USE_AVX_INSTRUCTIONS  "Compile your program with AVX instructions" OFF)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+option(USE_AVX_INSTRUCTIONS  "Compile your program with AVX instructions" ON)
 
 IF(USE_AVX_INSTRUCTIONS)
   add_definitions(-mavx)
   add_definitions(-march=native)
 ENDIF()
+
+INCLUDE_DIRECTORIES(dlib)
 
 MACRO(add_source name)
     ADD_EXECUTABLE(${name} src/${name}.cpp)
