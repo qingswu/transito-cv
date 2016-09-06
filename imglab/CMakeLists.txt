@@ -10,6 +10,10 @@ set (target_name imglab)
 
 PROJECT(${target_name})
 
+include(../dlib/dlib/cmake)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 # add all the cpp files we want to compile to this list.  This tells
 # cmake that they are part of our target (which is the executable named imglab)
 ADD_EXECUTABLE(${target_name} 
@@ -28,11 +32,10 @@ ADD_EXECUTABLE(${target_name}
 
 
 # Tell cmake to link our target executable to dlib.  
-include(../dlib/cmake)
 TARGET_LINK_LIBRARIES(${target_name} dlib )
 
 
 INSTALL(TARGETS ${target_name}
-	RUNTIME DESTINATION bin
-	)
+    RUNTIME DESTINATION bin
+    )
 
